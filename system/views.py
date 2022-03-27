@@ -132,16 +132,24 @@ def rating_view(request):
         return build_response("--- It hasn't been rating yet!", 404)
 
     # {“module”: [score]}
-    data = []
+    data = {}
     for score in scores:
-        data.append({
-            "professor_name": score.professor.name,
-            "professor_code": score.professor.code,
-            "score": score_str.get(score.score, ""),
-            "module_name": score.module.__str__()
-        })
+        if not data.get(score.professor.index, None):
+            data[score.professor.index] = []
+        data[score.professor.index].append(score.score)
 
-    rep = json.dumps({'views': data})
+    res_list = []
+    for key, value in data.items():
+        professor = Professor.objects.get(pk=key)
+        res = {
+            "professor_name": professor.name,
+            "professor_code": professor.code,
+            "score": score_str.get(round(sum(value)/len(value)), "")
+        }
+
+        res_list.append(res)
+
+    rep = json.dumps({'views': res_list})
     return HttpResponse(content=rep, content_type="application/json", status=200)
 
 
@@ -184,7 +192,6 @@ def average(request):
     }
 
     return HttpResponse(content=json.dumps(res), content_type="application/json", status=200)
-
 
 
 def rating(request):

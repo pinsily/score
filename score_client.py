@@ -7,8 +7,8 @@ class Client:
     # Init function to set required class variables
     def __init__(self):
         self.session = requests.Session()
-        # self.base_url = "http://127.0.0.1:8000/"
-        self.base_url = "https://1001james.pythonanywhere.com/"
+        self.base_url = "http://127.0.0.1:8000/"
+        # self.base_url = "https://1001james.pythonanywhere.com/"
         self.json_headers = {'content-type': 'application/json'}
         self.form_headers = {'content-type': 'application/x-www-form-urlencoded'}
         self.category_list = ['tech', 'pol', 'art', 'trivia']
@@ -93,7 +93,7 @@ class Client:
             res = response.json()
             for record in res.get("views"):
                 print(f"The rating of Professor {record.get('professor_name')} ({record.get('professor_code')}) "
-                      f"in {record.get('module_name')} is {record.get('score')}")
+                      f" is {record.get('score')}")
         elif response.json():
             print(f"{response.json().get('msg')}")
         else:
