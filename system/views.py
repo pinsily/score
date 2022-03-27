@@ -169,10 +169,12 @@ def average(request):
     module = module_list[0]
 
     scores = Score.objects.filter(module=module, professor=professor)
+    print(scores)
     if len(scores) < 1:
         return build_response(f"--- The professor has not rating in this module yet", 404)
 
     total_score = sum([score.score for score in scores])
+    print(total_score)
     res = {
         "professor_name": professor.name,
         "professor_code": professor.code,
@@ -182,6 +184,7 @@ def average(request):
     }
 
     return HttpResponse(content=json.dumps(res), content_type="application/json", status=200)
+
 
 
 def rating(request):
