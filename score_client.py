@@ -7,8 +7,8 @@ class Client:
     # Init function to set required class variables
     def __init__(self):
         self.session = requests.Session()
-        self.base_url = "http://127.0.0.1:8000/"
-        # self.base_url = "https://1001james.pythonanywhere.com/"
+        # self.base_url = "http://127.0.0.1:8000/"
+        self.base_url = "https://sc18qz.pythonanywhere.com/"
         self.json_headers = {'content-type': 'application/json'}
         self.form_headers = {'content-type': 'application/x-www-form-urlencoded'}
         self.category_list = ['tech', 'pol', 'art', 'trivia']
