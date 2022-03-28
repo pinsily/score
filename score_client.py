@@ -9,10 +9,7 @@ class Client:
         self.session = requests.Session()
         # self.base_url = "http://127.0.0.1:8000/"
         self.base_url = "https://sc18qz.pythonanywhere.com/"
-        self.json_headers = {'content-type': 'application/json'}
         self.form_headers = {'content-type': 'application/x-www-form-urlencoded'}
-        self.category_list = ['tech', 'pol', 'art', 'trivia']
-        self.region_list = ['uk', 'w', 'eu']
 
     def register(self):
         username = input("username: ").strip()
